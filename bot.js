@@ -4,23 +4,36 @@ const TelegramBot = require("node-telegram-bot-api");
 const token = process.env.TELEGRAM_BOT_TOKEN;
 
 const bot = new TelegramBot(token, { polling: true });
-// Matches "/echo [whatever]"
-bot.onText(/\/echo(.+)/, (msg, match) => {
-  // The 'msg' is the received Message from Telegram
-  // and 'match' is the result of executing the regexp
-  // above on the text content of the message
 
+bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-
-  // The captured "whatever"
-  const resp = match[1];
-
-  // send back the matched "whatever" to the chat
-  bot.sendMessage(chatId, resp);
+  bot.sendMessage(
+    chatId,
+    `မင်္ဂလာပါ😊 @${msg.chat.username} သိချင်တာတခုခုမေးပါ`
+  );
 });
 
-bot.onText(/မင်္ဂလာပါ/, (msg, match) => {
-  console.log(msg);
+bot.onText(/နာမည်/, (msg) => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, `@${msg.chat.username} 🤪`);
+});
+
+bot.onText(/မင်္ဂလာပါ/, (msg) => {
   const chatId = msg.chat.id;
   bot.sendMessage(chatId, `မင်္ဂလာပါ😊 @${msg.chat.username}`);
+});
+
+bot.onText(/Hello World/, (msg) => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, `Hello🤪 @${msg.chat.username}`);
+});
+
+bot.onText(/နေရောကောင်းရဲ့လား/, (msg) => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, `နေလို့ကောင်းပါတယ်`);
+});
+
+bot.onText(/ရှင်သန်ရတဲ့အဓိပ္ပာယ်/, (msg) => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, `မမဖြစ်လိမ့်မယ်😎`);
 });
