@@ -7,10 +7,36 @@ const bot = new TelegramBot(token, { polling: true });
 
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
+  bot.sendSticker(
+    chatId,
+    "CAACAgUAAxkBAANxY9D4yiDqgu6DrkIaZ82Y_QbwgxYAAisCAAKeUpFVyPSlVJutU5ItBA"
+  );
   bot.sendMessage(
     chatId,
     `မင်္ဂလာပါ😊 @${msg.chat.username} သိချင်တာတခုခုမေးပါ`
   );
+});
+
+bot.onText(/ဘာမှမသိချင်ဘူး/, (msg) => {
+  const chatId = msg.chat.id;
+  bot.sendSticker(
+    chatId,
+    "CAACAgUAAxkBAAN4Y9D55lqcYdNvz8286boK1jRXdkEAAmECAAIF2olVJfQLyeB8DxstBA"
+  );
+  bot.sendMessage(chatId, `ဘာမှမသိချင်ရင်ဘာလို့လာပြောနေသေးလဲ😑`);
+});
+bot.onText(/ဘာမှမသိချင်ပါ/, (msg) => {
+  const chatId = msg.chat.id;
+  bot.sendSticker(
+    chatId,
+    "CAACAgUAAxkBAAN4Y9D55lqcYdNvz8286boK1jRXdkEAAmECAAIF2olVJfQLyeB8DxstBA"
+  );
+  bot.sendMessage(chatId, `ဘာမှမသိချင်ရင်ဘာလို့လာပြောနေသေးလဲ😑`);
+});
+
+bot.onText(/ချစ်လား/, (msg) => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, `မချစ်ပါ 😐`);
 });
 
 bot.onText(/နာမည်/, (msg) => {
@@ -18,8 +44,10 @@ bot.onText(/နာမည်/, (msg) => {
   bot.sendMessage(chatId, `@${msg.chat.username} 🤪`);
 });
 
-bot.onText(/မင်္ဂလာပါ/, (msg) => {
+bot.onText(/မင်္ဂလာပါ/, async (msg) => {
   const chatId = msg.chat.id;
+  const update = await bot.getUpdates();
+  console.log(update[0].message);
   bot.sendMessage(chatId, `မင်္ဂလာပါ😊 @${msg.chat.username}`);
 });
 
